@@ -1,0 +1,265 @@
+{
+  "name": "pyr-dev",
+  "displayName": "Pyr Dev - AI Code Assistant",
+  "description": "Advanced AI-powered code assistant with LLM agents for writing, debugging, and improving code",
+  "version": "0.1.0",
+  "publisher": "pyr-dev",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other",
+    "Machine Learning",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "ai",
+    "assistant",
+    "code",
+    "llm",
+    "agent",
+    "cursor",
+    "copilot"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pyr-dev.askAgent",
+        "title": "Ask Pyr Agent",
+        "category": "Pyr Dev"
+      },
+      {
+        "command": "pyr-dev.fixCode",
+        "title": "Fix Code Issues",
+        "category": "Pyr Dev"
+      },
+      {
+        "command": "pyr-dev.explainCode",
+        "title": "Explain Code",
+        "category": "Pyr Dev"
+      },
+      {
+        "command": "pyr-dev.generateCode",
+        "title": "Generate Code",
+        "category": "Pyr Dev"
+      },
+      {
+        "command": "pyr-dev.openSettings",
+        "title": "Open Settings",
+        "category": "Pyr Dev"
+      },
+      {
+        "command": "pyr-dev.createTaskChain",
+        "title": "Create Task Chain",
+        "category": "Pyr Dev"
+      },
+      {
+        "command": "pyr-dev.executeTaskChain",
+        "title": "Execute Task Chain",
+        "category": "Pyr Dev"
+      },
+      {
+        "command": "pyr-dev.showTaskChains",
+        "title": "Show Task Chains",
+        "category": "Pyr Dev"
+      },
+      {
+        "command": "pyr-dev.cancelTaskChain",
+        "title": "Cancel Task Chain",
+        "category": "Pyr Dev"
+      },
+      {
+        "command": "pyr-dev.showMainMenu",
+        "title": "Show Main Menu",
+        "category": "Pyr Dev"
+      },
+      {
+        "command": "pyr-dev.switchProvider",
+        "title": "Switch LLM Provider",
+        "category": "Pyr Dev"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "pyr-dev.askAgent",
+        "key": "ctrl+shift+p",
+        "mac": "cmd+shift+p",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "pyr-dev.fixCode",
+        "key": "ctrl+shift+f",
+        "mac": "cmd+shift+f",
+        "when": "editorHasSelection"
+      },
+      {
+        "command": "pyr-dev.showMainMenu",
+        "key": "ctrl+shift+alt+p",
+        "mac": "cmd+shift+alt+p"
+      },
+      {
+        "command": "pyr-dev.createTaskChain",
+        "key": "ctrl+shift+alt+c",
+        "mac": "cmd+shift+alt+c"
+      }
+    ],
+    "configuration": {
+      "title": "Pyr Dev",
+      "properties": {
+        "pyr-dev.azureOpenAI.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Azure OpenAI API Key",
+          "order": 1
+        },
+        "pyr-dev.azureOpenAI.endpoint": {
+          "type": "string",
+          "default": "",
+          "description": "Azure OpenAI Endpoint URL",
+          "order": 2
+        },
+        "pyr-dev.azureOpenAI.deploymentName": {
+          "type": "string",
+          "default": "gpt-4",
+          "description": "Azure OpenAI Deployment Name",
+          "order": 3
+        },
+        "pyr-dev.gemini.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Google Gemini API Key",
+          "order": 4
+        },
+        "pyr-dev.gemini.model": {
+          "type": "string",
+          "default": "gemini-pro",
+          "description": "Gemini Model Name",
+          "order": 5
+        },
+        "pyr-dev.defaultProvider": {
+          "type": "string",
+          "enum": [
+            "azure",
+            "gemini"
+          ],
+          "default": "azure",
+          "description": "Default LLM Provider",
+          "order": 6
+        },
+        "pyr-dev.autoSuggest": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic code suggestions",
+          "order": 7
+        },
+        "pyr-dev.maxTokens": {
+          "type": "number",
+          "default": 4000,
+          "description": "Maximum tokens for LLM responses",
+          "order": 8
+        }
+      }
+    },
+    "views": {
+      "pyr-dev": [
+        {
+          "id": "pyr-dev.chatView",
+          "name": "Chat",
+          "when": "pyr-dev.activated"
+        },
+        {
+          "id": "pyr-dev.chainTaskView",
+          "name": "Task Chains",
+          "when": "pyr-dev.activated"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "pyr-dev",
+          "title": "Pyr Dev",
+          "icon": "$(robot)"
+        }
+      ]
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "submenu": "pyr-dev.context",
+          "group": "pyr-dev",
+          "when": "editorTextFocus"
+        }
+      ],
+      "pyr-dev.context": [
+        {
+          "command": "pyr-dev.contextMenu.askAboutCode",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "pyr-dev.contextMenu.fixCode",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "pyr-dev.contextMenu.explainCode",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "pyr-dev.contextMenu.optimizeCode",
+          "when": "editorHasSelection"
+        },
+        {
+          "command": "pyr-dev.contextMenu.generateTests",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "pyr-dev.context",
+        "label": "Pyr Dev"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "24.3.1",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "typescript": "^4.9.4",
+    "@vscode/test-electron": "^2.2.0",
+    "@vscode/vsce": "^2.15.0",
+    "@types/react": "19.1.12",
+    "@types/react-dom": "19.1.9",
+    "tailwindcss": "^4.1.9",
+    "postcss": "8.5.6"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "openai": "^4.20.0",
+    "@google/generative-ai": "^0.2.0",
+    "vscode": "1.1.37",
+    "next": "15.5.2",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "class-variance-authority": "0.7.1",
+    "clsx": "2.1.1",
+    "lucide-react": "0.543.0",
+    "tailwind-merge": "3.3.1",
+    "tailwindcss-animate": "1.0.7"
+  }
+}

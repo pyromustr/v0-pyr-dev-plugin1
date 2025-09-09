@@ -1,0 +1,248 @@
+:root {
+  --pyr-primary: #007acc;
+  --pyr-primary-hover: #005a9e;
+  --pyr-success: #28a745;
+  --pyr-warning: #ffc107;
+  --pyr-error: #dc3545;
+  --pyr-border: var(--vscode-panel-border);
+  --pyr-background: var(--vscode-editor-background);
+  --pyr-foreground: var(--vscode-editor-foreground);
+}
+
+body {
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  color: var(--pyr-foreground);
+  background-color: var(--pyr-background);
+  margin: 0;
+  padding: 0;
+}
+
+.chain-task-container {
+  padding: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--pyr-border);
+}
+
+.header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vscode-sideBarTitle-foreground);
+}
+
+.header-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  color: var(--vscode-icon-foreground);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.icon-button:hover {
+  background-color: var(--vscode-toolbar-hoverBackground);
+}
+
+.stats-section {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background-color: var(--vscode-badge-background);
+  border-radius: 4px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: var(--vscode-descriptionForeground);
+  text-transform: uppercase;
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--pyr-primary);
+}
+
+.chains-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--vscode-descriptionForeground);
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+}
+
+.empty-state h4 {
+  margin: 0 0 8px 0;
+  color: var(--pyr-foreground);
+}
+
+.empty-state p {
+  margin: 0 0 16px 0;
+  font-size: 12px;
+}
+
+.primary-button {
+  background-color: var(--pyr-primary);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  padding: 8px 16px;
+  font-size: 12px;
+}
+
+.primary-button:hover {
+  background-color: var(--pyr-primary-hover);
+}
+
+.chain-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--pyr-border);
+  border-radius: 4px;
+  background-color: var(--vscode-sideBar-background);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.chain-item:hover {
+  background-color: var(--vscode-list-hoverBackground);
+}
+
+.chain-status {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.chain-status.pending {
+  background-color: var(--pyr-warning);
+}
+
+.chain-status.running {
+  background-color: var(--pyr-primary);
+  animation: pulse 2s infinite;
+}
+
+.chain-status.completed {
+  background-color: var(--pyr-success);
+}
+
+.chain-status.failed {
+  background-color: var(--pyr-error);
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.chain-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.chain-name {
+  font-weight: 600;
+  font-size: 13px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chain-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--vscode-descriptionForeground);
+}
+
+.chain-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.chain-item:hover .chain-actions {
+  opacity: 1;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: var(--vscode-icon-foreground);
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 2px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-button:hover {
+  background-color: var(--vscode-toolbar-hoverBackground);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--vscode-progressBar-background);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--pyr-primary);
+  transition: width 0.3s ease;
+}
